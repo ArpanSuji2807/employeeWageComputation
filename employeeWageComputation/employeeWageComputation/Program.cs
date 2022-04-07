@@ -14,6 +14,8 @@ namespace employeeWageComputation
             PartTime.DailyEmpWage();
             wageComputation SwitchCase = new wageComputation();
             SwitchCase.DailyEmpWage();
+            wageComputation MonthlyWage = new wageComputation();
+            MonthlyWage.DailyEmpWage();
         }
     }
 }

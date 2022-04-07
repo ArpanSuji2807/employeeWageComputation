@@ -9,7 +9,7 @@ namespace employeeWageComputation
     public class wageComputation
     {
         const int IS_PRESENT = 0, WAGE_PER_HR = 20, FULL_TIME_HR = 8,
-            PART_TIME_HR = 4, IS_FULLTIME=0, IS_PARTTIME=1;
+            PART_TIME_HR = 4, IS_FULLTIME=0, IS_PARTTIME=1, WORKING_DAYS_PER_MONTH=20;
         int empHrs, totalEmpWage;
         public void EmployeeAttendance()
         {
@@ -23,22 +23,25 @@ namespace employeeWageComputation
         }
         public void DailyEmpWage()
         {
-            Random random = new Random();
-            int empCheck = random.Next(0, 3);
-            switch (empCheck)
+            for (int i = 0; i <= WORKING_DAYS_PER_MONTH; i++)
             {
-                case IS_FULLTIME:
-                    empHrs = 8;
-                    break;
-                case IS_PARTTIME:
-                    empHrs = 4;
-                    break;
-                default:
-                    break;
-            
+                Random random = new Random();
+                int empCheck = random.Next(0, 3);
+                switch (empCheck)
+                {
+                    case IS_FULLTIME:
+                        empHrs += 8;
+                        break;
+                    case IS_PARTTIME:
+                        empHrs += 4;
+                        break;
+                    default:
+                        break;
+
+                }
             }
             totalEmpWage = empHrs * WAGE_PER_HR;
-            Console.WriteLine("Total empWage for a day"  + totalEmpWage);
+            Console.WriteLine("Total empWage for a month is: "  + totalEmpWage);
         }
     }
 }
