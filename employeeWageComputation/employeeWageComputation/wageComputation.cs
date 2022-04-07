@@ -9,7 +9,8 @@ namespace employeeWageComputation
     public class wageComputation
     {
         const int IS_PRESENT = 0, WAGE_PER_HR = 20, FULL_TIME_HR = 8,
-            PART_TIME_HR = 4, IS_FULLTIME=0, IS_PARTTIME=1, WORKING_DAYS_PER_MONTH=20;
+            PART_TIME_HR = 4, IS_FULLTIME=0, IS_PARTTIME=1, WORKING_DAYS_PER_MONTH=20,
+            MAXIMUM_WORKING_HRS =100;
         int empHrs, totalEmpWage;
         public void EmployeeAttendance()
         {
@@ -40,7 +41,14 @@ namespace employeeWageComputation
 
                 }
             }
-            totalEmpWage = empHrs * WAGE_PER_HR;
+            if (empHrs > MAXIMUM_WORKING_HRS)
+            {
+                totalEmpWage = empHrs * WAGE_PER_HR - empHrs;
+            }
+            else
+            {
+                totalEmpWage = empHrs * WAGE_PER_HR;
+            }
             Console.WriteLine("Total empWage for a month is: "  + totalEmpWage);
         }
     }
