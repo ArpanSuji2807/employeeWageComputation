@@ -1,2 +1,13 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System;
+
+namespace employeeWageComputation
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            wageComputation computation = new wageComputation();
+            computation.EmployeeAttendance();
+        }
+    }
+}
