@@ -25,17 +25,17 @@ namespace employeeWageComputation
         {
             Random random = new Random();
             int empCheck = random.Next(0, 3);
-            if (empCheck == IS_FULLTIME)
+            switch (empCheck)
             {
-                empHrs = FULL_TIME_HR;
-            }
-            else if(empCheck==IS_PARTTIME)
-            {
-                empHrs = PART_TIME_HR;
-            }
-            else
-            {
-                empHrs = 0;
+                case IS_FULLTIME:
+                    empHrs = 8;
+                    break;
+                case IS_PARTTIME:
+                    empHrs = 4;
+                    break;
+                default:
+                    break;
+            
             }
             totalEmpWage = empHrs * WAGE_PER_HR;
             Console.WriteLine("Total empWage for a day"  + totalEmpWage);
