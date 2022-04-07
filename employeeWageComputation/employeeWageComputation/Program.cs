@@ -8,6 +8,8 @@ namespace employeeWageComputation
         {
             wageComputation computation = new wageComputation();
             computation.EmployeeAttendance();
+            wageComputation DailyWage = new wageComputation();
+            DailyWage.DailyEmpWage();
         }
     }
 }
