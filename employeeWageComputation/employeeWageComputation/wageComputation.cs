@@ -11,7 +11,8 @@ namespace employeeWageComputation
         const int IS_PRESENT = 0, WAGE_PER_HR = 20, FULL_TIME_HR = 8,
             PART_TIME_HR = 4, IS_FULLTIME=0, IS_PARTTIME=1, WORKING_DAYS_PER_MONTH=20,
             MAXIMUM_WORKING_HRS =100;
-        int empHrs, totalEmpWage;
+        int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+
         public void EmployeeAttendance()
         {
             
@@ -24,8 +25,9 @@ namespace employeeWageComputation
         }
         public void DailyEmpWage()
         {
-            for (int i = 0; i <= WORKING_DAYS_PER_MONTH; i++)
+            while (totalEmpHrs < MAXIMUM_WORKING_HRS && totalWorkingDays < WORKING_DAYS_PER_MONTH)
             {
+                totalWorkingDays++;
                 Random random = new Random();
                 int empCheck = random.Next(0, 3);
                 switch (empCheck)
@@ -40,15 +42,10 @@ namespace employeeWageComputation
                         break;
 
                 }
+                totalEmpHrs += empHrs;
+                Console.WriteLine("Day#: " + totalWorkingDays + " EmpHrs: " + empHrs);
             }
-            if (empHrs > MAXIMUM_WORKING_HRS)
-            {
-                totalEmpWage = empHrs * WAGE_PER_HR - empHrs;
-            }
-            else
-            {
-                totalEmpWage = empHrs * WAGE_PER_HR;
-            }
+            int totalEmpWage = totalEmpHrs * WAGE_PER_HR;
             Console.WriteLine("Total empWage for a month is: "  + totalEmpWage);
         }
     }
