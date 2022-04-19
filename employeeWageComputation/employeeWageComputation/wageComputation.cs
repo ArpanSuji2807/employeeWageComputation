@@ -23,7 +23,7 @@ namespace employeeWageComputation
             else
                 Console.WriteLine("Employee is absent");
         }
-        public void DailyEmpWage()
+        public void MonthlyEmpWage()
         {
             while (totalEmpHrs < MAXIMUM_WORKING_HRS && totalWorkingDays < WORKING_DAYS_PER_MONTH)
             {
