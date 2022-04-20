@@ -8,20 +8,20 @@ namespace employeeWageComputation
 {
     public class wageComputation
     {
-        const int IS_PRESENT = 0, IS_PART_TIME = 1;
+        const int IS_PART_TIME = 1;
         const int IS_FULL_TIME = 2;
+        private string company;
+        private int wage_per_hour, working_days_per_month, maximum_working_hours;
+        private int totalEmpwage;
 
-        public void EmployeeAttendance()
+        public wageComputation(string company, int wage_per_hour, int working_days_per_month, int maximum_working_hours)
         {
-            
-            Random random = new Random();
-            int empCheck = random.Next(0, 2);
-            if (empCheck == IS_PRESENT)
-                Console.WriteLine("Employee is present");
-            else
-                Console.WriteLine("Employee is absent");
+            this.company = company;
+            this.wage_per_hour = wage_per_hour;
+            this.working_days_per_month = working_days_per_month;
+            this.maximum_working_hours = maximum_working_hours;
         }
-        public void CompaniesWage(string company, int wage_per_hour, int working_days_per_month, int maximum_working_hours)
+        public void CompaniesWage()
         {
             int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
             while (totalEmpHrs < maximum_working_hours && totalWorkingDays < working_days_per_month)
@@ -47,6 +47,10 @@ namespace employeeWageComputation
             int totalEmpWage = totalEmpHrs * wage_per_hour;
             Console.WriteLine("Total empWage for a month is: " + totalEmpWage);
         }
-
+        public string EmpWageOfEachCompany()
+        {
+            return "Total employee wage for each company is: " + this.company + "is: " + totalEmpwage;
+        }
+        
     }
 }
