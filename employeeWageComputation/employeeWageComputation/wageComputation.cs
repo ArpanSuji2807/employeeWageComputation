@@ -8,10 +8,8 @@ namespace employeeWageComputation
 {
     public class wageComputation
     {
-        const int IS_PRESENT = 0, WAGE_PER_HR = 20, FULL_TIME_HR = 8,
-            PART_TIME_HR = 4, IS_FULLTIME=0, IS_PARTTIME=1, WORKING_DAYS_PER_MONTH=20,
-            MAXIMUM_WORKING_HRS =100;
-        int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+        const int IS_PRESENT = 0, IS_PART_TIME = 1;
+        const int IS_FULL_TIME = 2;
 
         public void EmployeeAttendance()
         {
@@ -23,19 +21,20 @@ namespace employeeWageComputation
             else
                 Console.WriteLine("Employee is absent");
         }
-        public void MonthlyEmpWage()
+        public void CompaniesWage(string company, int wage_per_hour, int working_days_per_month, int maximum_working_hours)
         {
-            while (totalEmpHrs < MAXIMUM_WORKING_HRS && totalWorkingDays < WORKING_DAYS_PER_MONTH)
+            int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+            while (totalEmpHrs < maximum_working_hours && totalWorkingDays < working_days_per_month)
             {
                 totalWorkingDays++;
                 Random random = new Random();
                 int empCheck = random.Next(0, 3);
                 switch (empCheck)
                 {
-                    case IS_FULLTIME:
+                    case IS_FULL_TIME:
                         empHrs += 8;
                         break;
-                    case IS_PARTTIME:
+                    case IS_PART_TIME:
                         empHrs += 4;
                         break;
                     default:
@@ -45,8 +44,9 @@ namespace employeeWageComputation
                 totalEmpHrs += empHrs;
                 Console.WriteLine("Day#: " + totalWorkingDays + " EmpHrs: " + empHrs);
             }
-            int totalEmpWage = totalEmpHrs * WAGE_PER_HR;
-            Console.WriteLine("Total empWage for a month is: "  + totalEmpWage);
+            int totalEmpWage = totalEmpHrs * wage_per_hour;
+            Console.WriteLine("Total empWage for a month is: " + totalEmpWage);
         }
+
     }
 }
