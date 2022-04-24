@@ -10,21 +10,30 @@ namespace employeeWageComputation
     {
         const int IS_PART_TIME = 1;
         const int IS_FULL_TIME = 2;
-        private string company;
-        private int wage_per_hour, working_days_per_month, maximum_working_hours;
-        private int totalEmpwage;
+        private int numOfCompanies=0;
+        private WageOfCompanies[] wageOfCompaniesArray;
 
-        public wageComputation(string company, int wage_per_hour, int working_days_per_month, int maximum_working_hours)
+        public wageComputation()
         {
-            this.company = company;
-            this.wage_per_hour = wage_per_hour;
-            this.working_days_per_month = working_days_per_month;
-            this.maximum_working_hours = maximum_working_hours;
+           this.wageOfCompaniesArray = new WageOfCompanies[5];
+        }
+        public void AddWageOfCompany(string company, int wage_per_hour, int working_days_per_month, int maximum_working_hours)
+        {
+            wageOfCompaniesArray[this.numOfCompanies] = new WageOfCompanies(company, wage_per_hour, working_days_per_month, maximum_working_hours);
+            numOfCompanies++;
         }
         public void CompaniesWage()
         {
+            for (int i = 0; i < numOfCompanies; i++)
+            {
+                wageOfCompaniesArray[i].SetTotalWage(this.CompaniesWage(this.wageOfCompaniesArray[i]));
+                Console.WriteLine(this.wageOfCompaniesArray[i].EmpWageOfEachCompany());
+            }
+        }
+        private int CompaniesWage(WageOfCompanies wageOfCompanies)
+        {
             int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
-            while (totalEmpHrs < maximum_working_hours && totalWorkingDays < working_days_per_month)
+            while (totalEmpHrs < wageOfCompanies.maximum_working_hours && totalWorkingDays < wageOfCompanies.working_days_per_month)
             {
                 totalWorkingDays++;
                 Random random = new Random();
@@ -44,13 +53,7 @@ namespace employeeWageComputation
                 totalEmpHrs += empHrs;
                 Console.WriteLine("Day#: " + totalWorkingDays + " EmpHrs: " + empHrs);
             }
-            int totalEmpWage = totalEmpHrs * wage_per_hour;
-            Console.WriteLine("Total empWage for a month is: " + totalEmpWage);
+            return totalEmpHrs * wageOfCompanies.wage_per_hour;
         }
-        public string EmpWageOfEachCompany()
-        {
-            return "Total employee wage for each company is: " + this.company + "is: " + totalEmpwage;
-        }
-        
     }
 }
